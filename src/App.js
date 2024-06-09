@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Switch } from "./Switch.js";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+  
+  state = { on: true };
+  
+  toggle = () => {
+      const isOn = this.state.on;
+      this.setState({on:!isOn});
+    };
+    
+    render() {
+      let wallClass = "wall off";
+      if (this.state.on) {
+        wallClass = "wall on";
+      }
+    
+    return (
+      <div className={wallClass}>
+        <Switch toggle={this.toggle} />
+        <Switch toggle={this.toggle}/>
+      </div>
+    );
+  }
 }
 
 export default App;
